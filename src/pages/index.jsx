@@ -256,9 +256,9 @@ export default function Home({ articles }) {
             Software developer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Mahmoud Abbas, a software developer based in Alexandria.
-            I'm specialized in frontend development especially with React.js and Next.js,
-            and I'm currently building enzyme.so
+            I&apos;m Mahmoud Abbas, a software developer based in Alexandria.
+            I&apos;m specialized in frontend development especially with React.js and Next.js,
+            and I&apos;m currently building enzyme.so
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

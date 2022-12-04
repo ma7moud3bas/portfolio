@@ -61,11 +61,11 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Mahmoud Abbas. I live in Alexandria, and I love to travel.
+              I&apos;m Mahmoud Abbas. I live in Alexandria, and I love to travel.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve loved making things for as long as I can remember, and
+                I&apos;ve loved making things for as long as I can remember, and
                 I've had a pc since I was 4 years old. At that time I only knew how to play games on it, but as time went by
                 my interest in computers grew as well as my knowledge of them.
               </p>
