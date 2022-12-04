@@ -66,7 +66,7 @@ export default function About() {
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
                 I&apos;ve loved making things for as long as I can remember, and
-                I've had a pc since I was 4 years old. At that time I only knew how to play games on it, but as time went by
+                I&apos;ve had a pc since I was 4 years old. At that time I only knew how to play games on it, but as time went by
                 my interest in computers grew as well as my knowledge of them.
               </p>
               <p>
@@ -74,7 +74,7 @@ export default function About() {
                 then I was introduced to programming by my older brother.
               </p>
               <p>
-                I started with just creating a simple login page. It wasn't functional, but I was over the moon with it. As I started learning more,
+                I started with just creating a simple login page. It wasn&apos;t functional, but I was over the moon with it. As I started learning more,
                 I stumbled across <a className='underline underline-offset-4' target={"_blank"} rel="noreferrer" href='https://microverse.org'>Microverse</a> where I learned fullstack web development.
               </p>
               <p>
