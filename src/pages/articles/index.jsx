@@ -49,15 +49,12 @@ export default function ArticlesIndex({ articles }) {
         intro="All of my long-form thoughts on programming, web3, gaming, and more."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <h1 className='text-black dark:text-white'>
-            Work in progress
-          </h1>
-          {/* <div className="flex max-w-3xl flex-col space-y-16">
-           
+          <div className="flex max-w-3xl flex-col space-y-16">
+
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}
-          </div> */}
+          </div>
         </div>
       </SimpleLayout>
     </>
