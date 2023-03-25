@@ -1,0 +1,411 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Mahmoud Abbas',
+  date: '2023-03-23',
+  title: 'Build a Live Search Bar in React: A Step-by-Step Guide',
+  description: "This tutorial provides a detailed, step-by-step guide for building a live search bar in React. By following the instructions, readers will learn how to create a search bar that filters results in real-time as users type.",
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+This article provides a tutorial for building a live search bar in React using functional components and hooks. The end result will be a search bar that filters through a list of characters based on user input.
+
+To get started, ensure that you have Node.js installed on your computer and have TypeScript installed as well. 
+Once you have these prerequisites, you can create your React app using the following command in your terminal:
+
+```shell
+npx create-react-app live-search --template typescript
+```
+
+Next, create a simple search component using the following code:
+
+```tsx
+  // src/components/Searchbar.tsx
+  export default function Searchbar (_props) {
+    return (
+      <div className="w-full">
+        <input type="search" className="w-full">
+      </div>
+    )
+  }
+```
+
+To handle state, you can use the useReducer hook. Create a reducer function that handles different actions and returns a new state based on the action. 
+The following code shows the reducer function, the initial state, and how to use the hook:
+
+```tsx
+// src/components/Searchbar.tsx
+
+// types
+type SearchResult = {
+  id: string,
+  name: string,
+  age: number
+}
+
+type State = {
+    results: SearchResult[]
+    isLoading: boolean
+    error?: string,
+    query: string
+}
+
+type Action =
+    | { type: 'request', }
+    | {
+        type: 'success', results: SearchResult[]
+    }
+    | { type: 'failure', error: string }
+    | { type: 'setQuery', query: string }
+
+// reducer 
+function reducer(state: State, action: Action): State {
+    switch (action.type) {
+        case "request": {
+            return { ...state, isLoading: true }
+        };
+
+        case "success": {
+            return { ...state, isLoading: false, results: action.results }
+        };
+
+        case "failure": {
+            return { ...state, isLoading: false, error: action.error }
+        };
+
+        case "setQuery": {
+            return { ...state, query: action.query }
+        };
+
+        default: {
+            throw Error("Unknown Action")
+        }
+    }
+}
+
+const initialState: State = { isLoading: false, results: [], query: "" }
+
+export default function Searchbar (_props) {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  // handle input change
+  function handleChange (e) {
+    dispatch({
+      type: "setQuery",
+      query: e.target.value
+    })
+  }
+
+  return (
+    <div className="w-full">
+      <input onChange={handleChange} value={state.query} type="search" className="w-full">
+    </div>
+  )
+}
+
+
+```
+
+Right now, whenever you type something into the searchbar the state changes. That's great!
+Now let's add the search logic. 
+
+We want to send a request everytime the input changes. so let's create a custom react hook that will handle that for us everytime the input changes. 
+
+```tsx
+  // src/components/searchbar.tsx
+  // ...old code above
+  import { Dispatch, useEffect, useState } from "react"
+
+  const getCharacters = async (query: string): Promise<SearchResult[]> => {
+    return await fetch(`API/URL`, {
+        body: JSON.stringify({
+            keyword: query
+        })
+    })
+        .then(res => res.json())
+        .then(data => data.data)
+        .catch(err => {
+            if (err.message === "DOMException: The user aborted a request.") {
+                console.log("request aborted")
+            } else {
+                throw err
+            }
+        })
+  }
+
+  const useLiveSearch = (dispatch: Dispatch<Action>, query: string) => {
+    useEffect(() => {
+      // don't send any requests if the input is less than 3 characters
+      if (query.length < 3) return
+      // set loading state to true
+      dispatch({ type: "request" })
+      try {
+          // this is a helper method that fetches the data for us
+          const data = await getCharacters(query)
+          if (data) {
+              dispatch({ type: "success", results: data })
+          }
+      } catch (err) {
+        // handle errors
+          console.error(err)
+          dispatch({ "type": "failure", error: "Something went wrong" })
+      }
+    }, [query])
+  }
+
+  export default function Searchbar (_props) {
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const {query, isLoading, results, error} = state
+    
+    useLiveSearch(dispatch, query)
+    
+    // handle input change
+    function handleChange (e) {
+      dispatch({
+        type: "setQuery",
+        query: e.target.value
+      })
+    }
+
+    return (
+      <div className="w-full">
+        <input onChange={handleChange} value={query} type="search" className="w-full">
+      </div>
+    )
+  }
+
+```
+
+To improve the performance of the app, we need to solve a problem. for examble: whenever a user types a word of four characters, four requests are sent to the server, which is not optimal. 
+To solve this, we use a technique called debouncing. Debouncing is achieved by delaying the execution of our code, the API requests, and waiting for a bit of time before executing the code if the input changes. 
+This technique reduces the requests sent to the server and thus improves performance.
+
+Here is the modified code:
+
+
+```tsx
+  // old code above...
+  // modify the api method to accept an abort signal
+  const getCharacters = async (query: string, signal): Promise<SearchResult[]> => {
+    return await fetch(`API/URL`, {
+        signal,
+        body: JSON.stringify({
+            keyword: query
+        })
+    })
+        .then(res => res.json())
+        .then(data => data.data)
+        .catch(err => {
+            if (err.message === "DOMException: The user aborted a request.") {
+                console.log("request aborted")
+            } else {
+                throw err
+            }
+        })
+  }
+
+  const useLiveSearch = (dispatch: Dispatch<Action>, query: string) => {
+    useEffect(() => {
+      // add an abort controller to abort requests if the query changes before a request is finished
+        const controller = new AbortController();
+        (async function () {
+            dispatch({ type: "request" })
+            try {
+                const data = await getCharacters(query, controller.signal)
+                if (data) {
+                    dispatch({ type: "success", results: data })
+                }
+            } catch (err) {
+                console.error(err)
+                dispatch({ "type": "failure", error: "Something went wrong" })
+            }
+        })()
+        return () => controller.abort()
+    }, [query])
+}
+
+  export default function Searchbar (_props) {
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const {query, isLoading, results, error} = state
+    
+    const [debounceValue, setDebounceValue] = useState<string>('')
+    
+    useLiveSearch(dispatch, query)
+
+    function handleChange (e) {
+      setDebounceValue(e.target.value)
+    }
+
+    useEffect(() => {
+      if (debounceValue.length < 3) {
+          return
+      }
+      const timeOut = setTimeout(() => {
+          dispatch({ type: "setQuery", query: debounceValue })
+      }, 400 ); // you can use any interval you want
+
+      // clean up
+      return () => clearTimeout(timeOut)
+    }, [debounceValue])
+    
+    return (
+      <div className="w-full">
+        <input onChange={handleChange} value={query} type="search" className="w-full">
+      </div>
+    )
+  }
+
+```
+
+Great! now our app is more performant. 
+
+But let's take it one step further. 
+To avoid redundant requests, we can use a technique called memoization, which caches the return values of expensive function calls. 
+In our case, we use memoization to cache API calls. 
+We can use the `lodash` memoize method. So let's install it. 
+
+```bash
+npm i lodash.memoize
+```
+
+Here is the final version:
+
+```tsx
+  import { Dispatch, useEffect, useState } from "react"
+  import memoize from "lodash.memoize"
+
+  // types
+  type SearchResult = {
+    id: string,
+    name: string,
+    age: number
+  }
+
+  type State = {
+      results: SearchResult[]
+      isLoading: boolean
+      error?: string,
+      query: string
+  }
+
+  type Action =
+      | { type: 'request', }
+      | {
+          type: 'success', results: SearchResult[]
+      }
+      | { type: 'failure', error: string }
+      | { type: 'setQuery', query: string }
+
+  // reducer 
+  function reducer(state: State, action: Action): State {
+      switch (action.type) {
+          case "request": {
+              return { ...state, isLoading: true }
+          };
+
+          case "success": {
+              return { ...state, isLoading: false, results: action.results }
+          };
+
+          case "failure": {
+              return { ...state, isLoading: false, error: action.error }
+          };
+
+          case "setQuery": {
+              return { ...state, query: action.query }
+          };
+
+          default: {
+              throw Error("Unknown Action")
+          }
+      }
+  }
+
+  const initialState: State = { isLoading: false, results: [], query: "" }
+
+  const getCharacters = async (query: string, signal): Promise<SearchResult[]> => {
+    return await fetch(`API/URL`, {
+        signal,
+        body: JSON.stringify({
+            keyword: query
+        })
+    })
+        .then(res => res.json())
+        .then(data => data.data)
+        .catch(err => {
+            if (err.message === "DOMException: The user aborted a request.") {
+                console.log("request aborted")
+            } else {
+                throw err
+            }
+        })
+  }
+  
+  const memoizedGetCharacters = memoize(getCharacters)
+
+  const useLiveSearch = (dispatch: Dispatch<Action>, query: string) => {
+    useEffect(() => {
+      // create an abort controller to abort requests if the query changes before a request is finished
+        const controller = new AbortController();
+        (async function () {
+            dispatch({ type: "request" })
+            try {
+                // use the memoized method
+                const data = await memoizedGetCharacters(query, controller.signal)
+                if (data) {
+                    dispatch({ type: "success", results: data })
+                }
+            } catch (err) {
+                console.error(err)
+                dispatch({ "type": "failure", error: "Something went wrong" })
+            }
+        })()
+        return () => controller.abort()
+    }, [query])
+  }
+
+  export default function Searchbar (_props) {
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const {query, isLoading, results, error} = state
+    
+    const [debounceValue, setDebounceValue] = useState<string>('')
+    
+    useLiveSearch(dispatch, query)
+
+    function handleChange (e) {
+      setDebounceValue(e.target.value)
+    }
+
+    useEffect(() => {
+      if (debounceValue.length <img 3) {
+          return
+      }
+      const timeOut = setTimeout(() => {
+          dispatch({ type: "setQuery", query: debounceValue })
+      }, 400 ); // you can use any interval you want
+
+      // clean up
+      return () => clearTimeout(timeOut)
+    }, [debounceValue])
+    
+    return (
+      <div className="w-full">
+        <input onChange={handleChange} value={query} type="search" className="w-full">
+      </div>
+    )
+  }
+```
+
+## Wrapping up
+In this tutorial, we learned how to build a live search bar in React using functional components and hooks. 
+
+We started by creating a simple search component and handling state with the useReducer hook. 
+We then added search logic by creating a custom hook that sends a request to the server every time the input changes. 
+Finally, we used the debouncing technique to improve the app's performance by delaying the execution of our code and reducing the number of requests sent to the server. 
+With these techniques, we can create a fast and responsive search bar that improves the user experience.
+
+
+### That's it. You're all good to go!
+
+<img src="https://media.giphy.com/media/111ebonMs90YLu/giphy.gif"  width="100%"></img>
