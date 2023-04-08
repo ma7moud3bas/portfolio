@@ -65,20 +65,58 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I&apos;ve loved making things for as long as I can remember, and
-                I&apos;ve had a pc since I was 4 years old. At that time I only knew how to play games on it, but as time went by
-                my interest in computers grew as well as my knowledge of them.
+                As far back as I can remember, I've been a maker. My journey with computers began at the tender age of 6, when I got my first PC.
               </p>
+
               <p>
-                It started by me learning how the computer actually works, how all the pieces fit together, and how to build one of my own.
-                then I was introduced to programming by my older brother.
+                At first, I only knew how to play games, but as time went on, my curiosity grew, and I delved deeper into the inner workings of computers. I learned how all the pieces fit together, built my own computer, and even got introduced to programming by my older brother. Since then, my passion for technology has only grown stronger, and I've been on an exciting journey of discovery and innovation ever since.
               </p>
+
               <p>
-                I started with just creating a simple login page. It wasn&apos;t functional, but I was over the moon with it. As I started learning more,
-                I stumbled across <a className='underline underline-offset-4' target={"_blank"} rel="noreferrer" href='https://microverse.org'>Microverse</a> where I learned fullstack web development.
+                From humble beginnings of creating a simple login page that wasn't even functional, I was over the moon with my first taste of web development. As I continued to learn and grow, I stumbled across Microverse, where I honed my skills in full-stack web development, fueling my passion for creating cutting-edge web applications.
               </p>
+
               <p>
-                I really love traveling as I find joy in trying new cultures and going on great adventures. I plan to travel the world before I turn 30.
+                Apart from my love for coding, I also have a deep passion for traveling. Exploring new cultures, embarking on great adventures, and experiencing the wonders of the world bring me immense joy. In fact, I have a goal to travel the world before I turn 30, seeking inspiration from diverse experiences and enriching my worldview.
+              </p>
+
+              <p>
+                Throughout my career, I've had the opportunity to create innovative products that have delighted users and made a real impact. From my humble beginnings to where I am today, I'm constantly driven to push the boundaries of what's possible and leave a lasting mark in the world of web development.
+              </p>
+
+              <p>
+                At Enzyme, I had a blast developing the frontend web application for the Enzyme web3 dashboard using Next.js and TypeScript. I created a web3 multi-chain dashboard that made smart contract creation a breeze, even for non-coders! I also built a script that could embed the dashboard functionalities into external websites, taking the application&apos;s reach to new heights.
+              </p>
+
+              <p>
+                And that&apos;s not all!
+              </p>
+
+              <p>
+                I also designed and developed a website builder that used GPT-3 to generate fully-functional websites from user descriptions. Talk about cutting-edge!
+              </p>
+
+              <p>
+                But that&apos;s not where the fun ends.
+              </p>
+
+              <p>
+                At Quickmail, I took the landing page to the next level by adding exciting new features that improved user experience and gave the website a fresh new look. I also geeked out on optimizing the codebase, automating the build process, and implementing best practices to boost the website&apos;s SEO, accessibility, and overall performance.
+              </p>
+
+              <p>
+                The result? A whopping 15% decrease in bounce rate!
+              </p>
+
+              <p>
+                With my love for frontend development, my eagerness for learning new technologies related to backend development, and knack for creating user-friendly experiences, I&apos;m always up for new challenges and ready to bring my creativity to any project.
+              </p>
+
+              <p>
+                I&apos;m currently looking for a new opportunity as a frontend engineer or a FE-heavy fullstack engineer, so if you have a project that you think I&apos;d be a good fit for, don&apos;t hesitate to reach out!
+              </p>
+              <p className='font-bold text-white'>
+                Let&apos;s collaborate and make something awesome together!
               </p>
             </div>
           </div>

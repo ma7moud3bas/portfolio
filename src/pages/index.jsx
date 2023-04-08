@@ -253,13 +253,16 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software developer
+            Software Engineer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I&apos;m Mahmoud Abbas, a software developer based in Alexandria.
-            I&apos;m specialized in frontend development especially with React.js and Next.js,
-            and I&apos;m currently building enzyme.so
+            I&apos;m specialized in frontend development especially with React.js and Next.js and I have experience with backend development using Node.js and Ruby on Rails.
+            I&apos;m currently building enzyme.so
           </p>
+          <Button href={"/about"} className="mt-6">
+            Learn more about me
+          </Button>
           <div className="mt-6 flex gap-6">
             <SocialLink
               href="https://twitter.com/mahmoud26369406"

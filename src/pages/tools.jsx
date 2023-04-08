@@ -25,11 +25,11 @@ function Tool({ title, href, children }) {
   )
 }
 
-export default function Uses() {
+export default function Tools() {
   return (
     <>
       <Head>
-        <title>Uses - Mahmoud Abbas</title>
+        <title>Tools - Mahmoud Abbas</title>
         <meta
           name="description"
           content="Software I use, gadgets I love, and other things I recommend."
@@ -56,11 +56,28 @@ export default function Uses() {
           </ToolsSection>
           <ToolsSection title="Development tools">
             <Tool title="Visual studio code">
-              Best IDE to get hte job done. plus the integration with wsl2 is great.
+              Best IDE to get hte job done. period.
+            </Tool>
+            <Tool title="WSL2">
+              The integrated linux shell allows me to get the best of both worlds. Great development environment from linux and the versatility of windows.
+            </Tool>
+            <Tool title="Docker">
+              I use Docker to run my development environment. It’s a great way to keep your dev environment consistent across machines when you are on a team especially if you are using windows.
             </Tool>
             <Tool title="oh-my-zsh">
               I’m honestly not even sure what features I get with this that
               aren’t just part of the normal Terminal but it’s what I use.
+            </Tool>
+            <Tool title="Github Copilot">
+              It’s been a huge help in my day to day work. Avoiding the need to google things is a huge time saver.
+            </Tool>
+          </ToolsSection>
+          <ToolsSection title="Documentation tools">
+            <Tool title="Notion">
+              We use Notion for everything. It’s my wiki, my todo list, my kanban board and everything in between.
+            </Tool>
+            <Tool title="Postman docs">
+              We use Postman docs to document our APIs. It’s a great tool for documenting APIs and it’s free.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Design">
