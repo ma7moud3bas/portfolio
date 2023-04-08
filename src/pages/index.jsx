@@ -243,12 +243,27 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          Mahmoud Abbas - Software developer
+          Mahmoud Abbas - Software Engineer
         </title>
         <meta
           name="description"
-          content="I'm Mahmoud Abbas, a software developer based in Alexandria. I'm specialized in frontend development especially with React.js and Next.js, and I'm currently building enzyme.so"
+          content="I'm Mahmoud Abbas, a software engineer based in Alexandria. I'm specialized in frontend development especially with React.js and Next.js, and I'm currently building enzyme.so"
         />
+        <meta
+          name="og:title"
+          content="Mahmoud Abbas - Software Engineer"
+        />
+        <meta
+          name="og:description"
+          content="I'm Mahmoud Abbas, a software engineer based in Alexandria. I'm specialized in frontend development especially with React.js and Next.js, and I'm currently building enzyme.so"
+        />
+        <meta name="og:image" content="https://mahmoud-abbas.com/avatar.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@mahmoud26369406" />
+        <meta name="twitter:creator" content="@mahmoud26369406" />
+        <meta name="twitter:title" content="Mahmoud Abbas - Software Engineer" />
+        <meta name="twitter:description" content="I'm Mahmoud Abbas, a software engineer based in Alexandria. I'm specialized in frontend development especially with React.js and Next.js, and I'm currently building enzyme.so" />
+        <meta name="twitter:image" content="https://mahmoud-abbas.com/avatar.jpg" />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
@@ -256,7 +271,7 @@ export default function Home({ articles }) {
             Software Engineer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Mahmoud Abbas, a software developer based in Alexandria.
+            I&apos;m Mahmoud Abbas, a software engineer based in Alexandria.
             I&apos;m specialized in frontend development especially with React.js and Next.js and I have experience with backend development using Node.js and Ruby on Rails.
             I&apos;m currently building enzyme.so
           </p>
