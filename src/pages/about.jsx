@@ -81,7 +81,7 @@ export default function About() {
               </p>
 
               <p>
-                Throughout my career, I&apos;ve had the opportunity to create innovative products that have delighted users and made a real impact. From my humble beginnings to where I am today, I&apos;m constantly driven to push the boundaries of what's possible and leave a lasting mark in the world of web development.
+                Throughout my career, I&apos;ve had the opportunity to create innovative products that have delighted users and made a real impact. From my humble beginnings to where I am today, I&apos;m constantly driven to push the boundaries of what&apos;s possible and leave a lasting mark in the world of web development.
               </p>
 
               <p>
