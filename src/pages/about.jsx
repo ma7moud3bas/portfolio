@@ -61,19 +61,19 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I&apos;m Mahmoud Abbas. I live in Alexandria, and I love to travel.
+              I&apos;m <span className='text-teal-500'>Mahmoud Abbas</span>. I live in Alexandria, and I love to travel.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                As far back as I can remember, I've been a maker. My journey with computers began at the tender age of 6, when I got my first PC.
+                As far back as I can remember, I&apos;ve been a maker. My journey with computers began at the tender age of 6, when I got my first PC.
               </p>
 
               <p>
-                At first, I only knew how to play games, but as time went on, my curiosity grew, and I delved deeper into the inner workings of computers. I learned how all the pieces fit together, built my own computer, and even got introduced to programming by my older brother. Since then, my passion for technology has only grown stronger, and I've been on an exciting journey of discovery and innovation ever since.
+                At first, I only knew how to play games, but as time went on, my curiosity grew, and I delved deeper into the inner workings of computers. I learned how all the pieces fit together, built my own computer, and even got introduced to programming by my older brother. Since then, my passion for technology has only grown stronger, and I&apos;ve been on an exciting journey of discovery and innovation ever since.
               </p>
 
               <p>
-                From humble beginnings of creating a simple login page that wasn't even functional, I was over the moon with my first taste of web development. As I continued to learn and grow, I stumbled across Microverse, where I honed my skills in full-stack web development, fueling my passion for creating cutting-edge web applications.
+                From humble beginnings of creating a simple login page that wasn&apos;t even functional, I was over the moon with my first taste of web development. As I continued to learn and grow, I stumbled across Microverse, where I honed my skills in full-stack web development, fueling my passion for creating cutting-edge web applications.
               </p>
 
               <p>
@@ -81,7 +81,7 @@ export default function About() {
               </p>
 
               <p>
-                Throughout my career, I've had the opportunity to create innovative products that have delighted users and made a real impact. From my humble beginnings to where I am today, I'm constantly driven to push the boundaries of what's possible and leave a lasting mark in the world of web development.
+                Throughout my career, I&apos;ve had the opportunity to create innovative products that have delighted users and made a real impact. From my humble beginnings to where I am today, I&apos;m constantly driven to push the boundaries of what's possible and leave a lasting mark in the world of web development.
               </p>
 
               <p>
