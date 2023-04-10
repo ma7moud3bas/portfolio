@@ -110,7 +110,7 @@ export default function Searchbar (_props) {
 Right now, whenever you type something into the searchbar the state changes. That's great!
 Now let's add the search logic. 
 
-We want to send a request everytime the input changes. so let's create a custom react hook that will handle that for us everytime the input changes. 
+We want to send a request every time the input changes. so let's create a custom react hook that will handle that for us every time the input changes. 
 
 ```tsx
   // src/components/searchbar.tsx
@@ -177,7 +177,7 @@ We want to send a request everytime the input changes. so let's create a custom 
 
 ```
 
-To improve the performance of the app, we need to solve a problem. for examble: whenever a user types a word of four characters, four requests are sent to the server, which is not optimal. 
+To improve the performance of the app, we need to solve a problem. for example: whenever a user types a word of four characters, four requests are sent to the server, which is not optimal. 
 To solve this, we use a technique called debouncing. Debouncing is achieved by delaying the execution of our code, the API requests, and waiting for a bit of time before executing the code if the input changes. 
 This technique reduces the requests sent to the server and thus improves performance.
 

@@ -20,7 +20,7 @@ By the end of this article, you will have the foundational knowledge to start bu
 The first thing we need to do is create our react app.
 We will be using typescript for the purpose of this app, but you can use plain js if you want. 
 
-To do this just open your terminal in your prefered folder, and type this command. 
+To do this just open your terminal in your preferred folder, and type this command. 
 
 ```shell
 npx create-react-app web3-dapp --template typescript
@@ -56,7 +56,7 @@ import { publicProvider } from 'wagmi/providers/public'
 // 1- select the chains we want to support 
 const supportedChains = [mainnet, goerli, polygon]
 
-// 2- create the configration 
+// 2- create the configuration 
 const { provider } = configureChains(
     [...supportedChains],
     [publicProvider()],
@@ -82,14 +82,14 @@ export default function WagmiWrapper({ children }: Props) {
 
 ```
 
-Let's go throught this code block by block. 
+Let's go through this code block by block. 
 
 1. We select the chains that we want to support by importing them from `wagmi/chains`.
 By default, **Wagmi** supports 50+ [EVM](https://medium.com/eligma-blog/what-are-evm-compatible-blockchains-64f91c97038e) compatible chains. here we selected the Ethereum mainnet, Ethereum goerli, and Polygon.
 
-2. We create the client configration. It takes in 3 arguments: 
+2. We create the client configuration. It takes in 3 arguments: 
     1. Supported chains (that we selected earlier)
-    2. List of providers. here we are using the public provider, but we can add more. By default, wagmi offers 3 provider configrations: public, [Infura](https://www.infura.io/), and [Alchemy](https://www.alchemy.com/). or you can create your own custom `jsonRpc` provider. 
+    2. List of providers. here we are using the public provider, but we can add more. By default, wagmi offers 3 provider configurations: public, [Infura](https://www.infura.io/), and [Alchemy](https://www.alchemy.com/). or you can create your own custom `jsonRpc` provider. 
     We will go in details on how to add other providers in a following article.
     3. List of websocket providers. (optional)
 
@@ -97,7 +97,7 @@ By default, **Wagmi** supports 50+ [EVM](https://medium.com/eligma-blog/what-are
     1. autoConnect, which makes the client connect back automatically in the same session if you refresh the website. 
     2. The provider that we configured earlier. 
 
-At this stage, we have successfully created our wagmi client configuration. we just need to incapsulate it in a react component and that's it.
+At this stage, we have successfully created our wagmi client configuration. we just need to encapsulate it in a react component and that's it.
 
 
 Next, we'll wrap our app with the WagmiWrapper we just created. 
@@ -148,7 +148,7 @@ Here we are using 3 hooks from wagmi:
 2. useEnsName to resolve the wallet's ENS name (if it exists). 
 3. useConnect to connect our app to the wallet. 
 
-You can check out the library of hooks that wagmi supports from thier [offecial website](https://wagmi.sh/react/hooks/useAccount)
+You can check out the library of hooks that wagmi supports from their [official website](https://wagmi.sh/react/hooks/useAccount)
 
 The last step is to import and use the component we created in the `App`
 ```tsx
