@@ -132,6 +132,15 @@ It adds an additional JWT token called an ID token to the Authorization Code Flo
 ## SAML
 **Security Assertion Markup Language** (SAML) is an XML-based standard for exchanging authentication and authorization data between security domains. It is used by companies to allow their employees to access applications and services from multiple vendors using a single set of credentials. Providing what is known as a single sign-on (SSO) experience for users.
 
+## WebAuthn
+**Web Authentication** (WebAuthn) is a new W3C standard for passwordless authentication on the web. It allows users to authenticate to websites using biometric authentication, such as fingerprint or facial recognition, or security keys, such as Yubikeys.
+
+It works by using a public key cryptography system to generate a unique cryptographic key pair for each user. 
+The private key is stored on the user's device, while the public key is encrypted and stored on the server. 
+
+When the user attempts to log in, the server sends a challenge to the user's device, which the user then signs with their private key. 
+The server then verifies the signature using the public key, and if it's valid, the user is authenticated.
+
 
 ## Which one should you use?
 
@@ -139,9 +148,11 @@ For complex applications with multiple users, I would recommend using OIDC. It's
 
 For web applications only, I would recommend using Token-based authentication with the precautions stated above.
 
-SAML is your best bet if you are building an enterprise application.
+SAML is your best bet if you are building an enterprise application, but sometimes it can be a bit much to handle.
 
+WebAuthn is another great option for web applications, but it's still in its early stages and not widely adopted yet. and it introduces one new challenge - what if the user loses the authenticator. 
 
+In my opinion, you can't go wrong with OAuth/OIDC. It's a bit more complex than some other options, but it's secure and widely adopted.
 
 There are other ways to authenticate users, such as 2 factor authentication, One Time passwords, etc. but these are usually used in conjunction with one of the methods mentioned above.
 
