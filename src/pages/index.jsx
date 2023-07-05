@@ -285,7 +285,7 @@ export default function Home({ articles }) {
               icon={TwitterIcon}
             />
             <SocialLink
-              href="https://github.com/mahmoud717"
+              href="https://github.com/ma7moud3bas"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
